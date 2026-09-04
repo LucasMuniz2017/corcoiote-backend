@@ -6,3 +6,11 @@ export function getAllUsers(_req:Request, res: Response): void {
 
   res.status(200).json(users);
 }
+
+export function getUserById(req:Request, res: Response): void {
+  const id = Number(req.params.id);
+
+  const user = UserService.findUserById(id);
+
+  res.status(200).json(user);
+}
