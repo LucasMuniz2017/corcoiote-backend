@@ -32,3 +32,11 @@ export function updateUser(req:Request, res: Response): void {
 
   res.status(200).json(user);
 }
+
+export function deleteUser(req:Request, res: Response): void {
+  // const id = Number(req.params.id); ou const id = +req.params.id
+
+  UserService.removeUser(+req.params.id);
+
+  res.status(204).send();
+}

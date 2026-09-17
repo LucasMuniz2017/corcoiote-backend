@@ -45,3 +45,22 @@ export function modifyUser(id: number, {
 
   return user;
 }
+
+export function removeUser(id:number) {
+  function findIndex() {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id === id) {
+        return i;
+      }
+    }
+
+    return -1;
+  };
+
+  const index = findIndex();
+
+  if (index === -1)
+    throw new Error(`Usuário de id ${id} não encontrado.`);
+
+  users.splice(index, 1);
+}
