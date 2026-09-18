@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./src/server.ts"
+    "dev": "node --watch --env-file=.env ./src/server.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
