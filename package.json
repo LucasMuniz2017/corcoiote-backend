@@ -1,0 +1,8 @@
+{
+  "name": "corcoiote",
+  "author": "Lucas Muniz",
+  "scripts": {},
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15"
+  }
+}
