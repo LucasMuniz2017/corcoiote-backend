@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang='pt-br'>
+
+<head>
+  <meta charset='UTF-8' />
+  <title>Corcoite</title>
+</head>
+
+<body>
+
+  <div></div>
+
+  <!-- React  -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <!-- React DOM -->
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel -->
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type='text/babel'>
+
+    const container = document.querySelector('div');
+
+    const invoices = [{
+      id: 1,
+      amount: '1.250,000',
+      status: 'Pendente',
+      issueDate: '10/10/2026',
+      dueDate: '16/11/2026',
+      customer: {
+        id: 1,
+        name: 'Construtora Meridiano',
+        email: 'contato@meridiano.com.br'
+      }
+    }, {
+      id: 2,
+      amount: '3.763,11',
+      status: 'Paga',
+      issueDate: '14/10/2026',
+      dueDate: '21/11/2026',
+      customer: {
+        id: 6,
+        name: 'Grafica nova vida',
+        email: 'grafica@novavida.com.br'
+      }
+    }, {
+      id: 3,
+      amount: '9.999,99',
+      status: 'Pendente',
+      issueDate: '11/10/2026',
+      dueDate: '17/11/2026',
+      customer: {
+        id: 11,
+        name: 'tio rico',
+        email: 'tio@rico.com.br'
+      }
+    }]
+
+    const Title = () => <h1>Faturas</h1>;
+
+    const InvoiceTable = () => {
+      return <>
+        <table>
+          <thead>
+            <tr>
+              <th>Valor</th>
+              <th>Data de Emissão</th>
+              <th> Data de Vencimento</th>
+              <th>Situação</th>
+              <th>Cliente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Construtora Meridiano</td>
+              <td>R$ 1.250,00</td>
+              <td>10/10/2026</td>
+              <td>16/11/2026</td>
+              <td>Pendente</td>
+            </tr>
+          </tbody>
+        </table>
+      </>
+    }
+
+    const App = () => {
+      return <>
+        <Title />
+        <InvoiceTable />
+      </>;
+    }
+
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+
+  </script>
+</body>
+
+</html>

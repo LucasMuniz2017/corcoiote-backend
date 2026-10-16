@@ -1,4 +1,4 @@
-import users from '../mocks/user.mock.ts';
+import {} from '../mocks/user.mock.ts'; // modelo antigo, ajustar depois
 import type { User, CreateUser, UpdateUser } from '../type/user.type.ts';
 
 export function findAllUsers(): User[] {
