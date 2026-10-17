@@ -3,7 +3,7 @@ import z, {} from 'zod';
 export const createCustomerSchema = z.object({
   name: z.string().min(2),
   email: z.email(),
-  imageUlr: z.url().optional
+  imageUrl: z.url().optional()
 });
 
 export const updateCustomerSchema = createCustomerSchema.partial();
