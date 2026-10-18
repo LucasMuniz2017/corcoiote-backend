@@ -1,66 +1,38 @@
-import {} from '../mocks/user.mock.ts'; // modelo antigo, ajustar depois
-import type { User, CreateUser, UpdateUser } from '../type/user.type.ts';
+import prisma from '../lib/prisma.ts';
+import type { CreateUser, UpdateUser } from '../schemas/user.schemas.ts';
+import type { User } from '../type/user.type.ts';
 
-export function findAllUsers(): User[] {
-  return users;
+export async function findAllUsers(): Promise<User[]> {
+  return await prisma.user.findMany();
 }
 
-export function findUserById(id: number): User {
-  const user = users.find((user) => user.id === id);
+export async function findUserById(id: number): Promise<User> {
+  const user = await prisma.user.findUnique({ where: { id } });
 
-  if (!user) throw new Error(`Usuário de id ${id} não encontrado.`); 
+  if (!user) throw new Error(`Usuário de id ${id} não encontrado.`);
 
   return user;
+
 }
 
-export function insertUser({
-  name,
-  email,
-  password
-}: CreateUser): User {
-  const user: User = {
-    id: users[users.length - 1].id + 1,
-    name,
-    email,
-    password
-  };
+export async function insertUser(datas: CreateUser): Promise<User> {
+  return await prisma.user.create({ data: datas });
+}
 
-  users[users.length] = user;
+export async function modifyUser(id: number, datas: UpdateUser): Promise<User> {
+  await findUserById(id);
+
+  const user = await prisma.user.update({
+    where: { id },
+    data: datas
+  });
 
   return user;
+
 }
 
-export function modifyUser(id: number, {
-  name,
-  email, 
-  password
-}: UpdateUser): User {
-  const user = users.find((user) => user.id === id);
+export async function removeUser(id: number): Promise<void> {
+  await findUserById(id);
 
-  if (!user) throw new Error(`Usuário de id ${id} não encontrado.`); 
-
-  if (name) user.name = name;
-  if (email) user.email = email;
-  if (password) user.password = password;
-
-  return user;
-}
-
-export function removeUser(id:number) {
-  function findIndex() {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].id === id) {
-        return i;
-      }
-    }
-
-    return -1;
-  };
-
-  const index = findIndex();
-
-  if (index === -1)
-    throw new Error(`Usuário de id ${id} não encontrado.`);
-
-  users.splice(index, 1);
+  await prisma.user.delete({ where: { id } });
 }
