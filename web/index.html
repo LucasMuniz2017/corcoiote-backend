@@ -57,7 +57,19 @@
       }
     }]
 
-    const Title = () => <h1>Faturas</h1>;
+    const Title = () => {
+      <h1>Faturas</h1>;
+    }
+
+    const InvoicesRow = (props) => {
+      return <tr>
+        <td>{props.object.customer.name}</td>
+        <td>{props.object.amount}</td>
+        <td>{props.object.issueDate}</td>
+        <td>{props.object.dueDate}</td>
+        <td>{props.object.status}</td>
+      </tr>;
+    }
 
     const InvoiceTable = () => {
       return <>
@@ -72,13 +84,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Construtora Meridiano</td>
-              <td>R$ 1.250,00</td>
-              <td>10/10/2026</td>
-              <td>16/11/2026</td>
-              <td>Pendente</td>
-            </tr>
+            {invoices.map((invoice) => {
+              return <InvoicesRow key={invoice.id} object={invoice} />
+            })}
           </tbody>
         </table>
       </>
