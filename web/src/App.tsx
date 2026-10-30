@@ -38,6 +38,7 @@ const invoices: Invoice[] = [{
 
 export default function App() {
   return <>
+    <h1>Corcoiote</h1>
     <InvoiceTable datas={invoices} />
   </>;
 }
